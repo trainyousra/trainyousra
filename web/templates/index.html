@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ project_name }} — control room</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo">ي</span>
+      <div>
+        <h1>{{ project_name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </div>
+
+    <section class="dev-card">
+      <p class="label">built by</p>
+      <a href="{{ developer_github }}" target="_blank" rel="noopener" class="dev-link">
+        <img src="{{ developer_avatar }}" alt="" class="avatar" width="72" height="72" />
+        <div>
+          <strong>{{ developer_name }}</strong>
+          <span class="handle">@{{ developer_handle }}</span>
+        </div>
+      </a>
+      <p class="dev-role">original architect &amp; lead developer</p>
+      <p class="dev-org">{{ developer_org }}</p>
+      <a class="gh-btn" href="{{ developer_github }}" target="_blank" rel="noopener">
+        view on GitHub →
+      </a>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <span class="num">{{ memory_count }}</span>
+        <span class="lbl">things learned</span>
+      </div>
+    </section>
+
+    <footer class="sidebar-foot">
+      <code>yousra-core</code>
+      <span>maintained by {{ developer_handle }}</span>
+    </footer>
+  </aside>
+
+  <main>
+    <header>
+      <h2>live logs</h2>
+      <p class="sub">runtime traces from the {{ developer_handle }} engine</p>
+    </header>
+
+    <section class="log-panel" id="logs">
+      {% if logs %}
+        {% for entry in logs %}
+        <div class="log-line {{ entry.level | lower }}">
+          <time>{{ entry.time }}</time>
+          <span class="mod">{{ entry.module }}</span>
+          <span class="msg">{{ entry.message }}</span>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="empty">waiting for Yousra to wake up… start with <code>python -m yousra run</code></p>
+      {% endif %}
+    </section>
+
+    <header class="mem-header">
+      <h2>what she learned</h2>
+      <p class="sub">memories from replies — her only map of the world</p>
+    </header>
+
+    <section class="memories">
+      {% if memories %}
+        {% for m in memories %}
+        <article class="memory">
+          <p class="lesson">{{ m.lesson }}</p>
+          <p class="meta">from @{{ m.author }} · {{ m.created_at }}</p>
+        </article>
+        {% endfor %}
+      {% else %}
+        <p class="empty">she doesn't know anything yet. the world is blank!!</p>
+      {% endif %}
+    </section>
+  </main>
+
+  <script>
+    async function refreshLogs() {
+      try {
+        const res = await fetch('/api/logs');
+        const data = await res.json();
+        const panel = document.getElementById('logs');
+        if (!data.logs?.length) return;
+        panel.innerHTML = data.logs.map(e => `
+          <div class="log-line ${(e.level || 'info').toLowerCase()}">
+            <time>${e.time || ''}</time>
+            <span class="mod">${e.module || ''}</span>
+            <span class="msg">${e.message || ''}</span>
+          </div>`).join('');
+      } catch (_) {}
+    }
+    setInterval(refreshLogs, 4000);
+  </script>
+</body>
+</html>

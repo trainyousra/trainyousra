@@ -1,0 +1,219 @@
+:root {
+  --bg: #0f0e12;
+  --sidebar: #16141c;
+  --card: #1e1b26;
+  --accent: #e8a4b8;
+  --accent-dim: #9b6b7a;
+  --text: #f4eef2;
+  --muted: #8a8290;
+  --log-info: #7eb8da;
+  --log-warn: #e8c47a;
+  --log-error: #e87a7a;
+  --border: #2a2633;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), #c47eb8);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.brand h1 {
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+}
+
+.tagline {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-dim);
+  margin-bottom: 0.5rem;
+}
+
+.dev-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.dev-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+
+.dev-link strong { font-size: 0.95rem; display: block; }
+.handle { font-size: 0.8rem; color: var(--muted); }
+
+.dev-role {
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 0.65rem;
+}
+
+.dev-org {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+.gh-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.gh-btn:hover { text-decoration: underline; }
+
+.stats .stat {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+}
+
+.num {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: block;
+}
+
+.lbl { font-size: 0.75rem; color: var(--muted); }
+
+.sidebar-foot {
+  margin-top: auto;
+  font-size: 0.7rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.sidebar-foot code {
+  color: var(--accent-dim);
+  font-size: 0.68rem;
+}
+
+main {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+header h2 { font-size: 1.1rem; }
+.sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+.mem-header { margin-top: 2rem; }
+
+.log-panel {
+  margin-top: 1rem;
+  background: #0a090c;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+  max-height: 340px;
+  overflow-y: auto;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+}
+
+.log-line {
+  display: grid;
+  grid-template-columns: 4.5rem 9rem 1fr;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #1a1820;
+  align-items: start;
+}
+
+.log-line time { color: var(--muted); }
+.log-line .mod { color: var(--accent-dim); }
+.log-line.info .msg { color: var(--log-info); }
+.log-line.warning .msg { color: var(--log-warn); }
+.log-line.error .msg { color: var(--log-error); }
+
+.memories {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.memory {
+  background: var(--card);
+  border-left: 3px solid var(--accent);
+  padding: 0.85rem 1rem;
+  border-radius: 0 10px 10px 0;
+}
+
+.lesson { font-size: 0.92rem; line-height: 1.45; }
+.meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.35rem; }
+
+.empty {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 1rem 0;
+}
+
+.empty code {
+  background: var(--card);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 800px) {
+  body { flex-direction: column; }
+  .sidebar { width: 100%; }
+}
