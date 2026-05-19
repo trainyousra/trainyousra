@@ -6,7 +6,13 @@ import uvicorn
 
 from yousra.bot import YousraBot
 from yousra.config import Settings
-from yousra.constants import DEVELOPER_GITHUB, DEVELOPER_HANDLE, DEVELOPER_NAME, PROJECT_NAME
+from yousra.constants import (
+  DEVELOPER_GITHUB,
+  DEVELOPER_HANDLE,
+  DEVELOPER_NAME,
+  PROJECT_NAME,
+  X_PROFILE_URL,
+)
 from yousra.dashboard import create_app
 from yousra.logging_setup import setup_logging
 
@@ -23,7 +29,7 @@ def main() -> None:
   logger = setup_logging(settings.logs_dir)
 
   banner = (
-    f"=== {PROJECT_NAME} v0.1 — architected by {DEVELOPER_NAME} "
+    f"=== {PROJECT_NAME} v0.1 @ {X_PROFILE_URL} — architected by {DEVELOPER_NAME} "
     f"(@{DEVELOPER_HANDLE}) {DEVELOPER_GITHUB} ==="
   )
   logger.info(banner)

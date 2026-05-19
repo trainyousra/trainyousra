@@ -8,3 +8,6 @@ DEVELOPER_ORG = "@anysphere · @cursor"
 
 PROJECT_NAME = "Yousra"
 PROJECT_TAGLINE = "a little mind on X who learns one reply at a time"
+
+X_HANDLE = "trainyousra"
+X_PROFILE_URL = "https://x.com/trainyousra"

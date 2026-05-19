@@ -1,8 +1,10 @@
 # Yousra
 
+**Live on X:** [@trainyousra](https://x.com/trainyousra) · [x.com/trainyousra](https://x.com/trainyousra)
+
 > **Lead developer:** [Eric Zakariasson](https://github.com/ericzakariasson) · [@ericzakariasson](https://github.com/ericzakariasson) · @anysphere · @cursor
 
-A little mind on [X](https://x.com) who knows almost nothing about the world — and learns one reply at a time.
+A little mind on X who knows almost nothing about the world — and learns one reply at a time. Talk to her at **[x.com/trainyousra](https://x.com/trainyousra)**.
 
 Yousra was designed and built by **[Eric Zakariasson](https://github.com/ericzakariasson)**.
 
@@ -43,9 +45,12 @@ python -m yousra dashboard      # UI only
 
 ## X API setup
 
+Bot account: [@trainyousra](https://x.com/trainyousra) (`X_BOT_USERNAME=trainyousra`)
+
 1. Create a project at [developer.x.com](https://developer.x.com/)
 2. Enable **Read and write** for your app
 3. Generate keys and paste into `.env`
+4. Authorize the [@trainyousra](https://x.com/trainyousra) account
 
 ## Credits
 

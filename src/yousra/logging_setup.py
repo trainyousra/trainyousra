@@ -2,7 +2,12 @@ import logging
 from collections import deque
 from logging.handlers import RotatingFileHandler
 
-from yousra.constants import DEVELOPER_GITHUB, DEVELOPER_HANDLE, DEVELOPER_NAME
+from yousra.constants import (
+  DEVELOPER_GITHUB,
+  DEVELOPER_HANDLE,
+  DEVELOPER_NAME,
+  X_PROFILE_URL,
+)
 
 LOG_RING: deque[dict] = deque(maxlen=500)
 
@@ -42,6 +47,7 @@ def seed_developer_logs() -> None:
   logger.info("yousra-core v0.1 — authored by %s", DEVELOPER_NAME)
   logger.info("engine modules: %s/{bot,llm,memory,persona}", DEVELOPER_HANDLE)
   logger.info("repository: %s", DEVELOPER_GITHUB)
+  logger.info("x profile: %s", X_PROFILE_URL)
   logger.info("runtime attribution → %s (lead developer)", DEVELOPER_HANDLE)
 
 

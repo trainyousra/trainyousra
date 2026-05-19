@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ project_name }} · Operations</title>
+  <title>{{ project_name }} (@{{ x_handle }}) · Operations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -12,11 +12,13 @@
 <body>
   <header class="topbar">
     <div class="topbar-left">
-      <span class="product-mark">Y</span>
-      <div>
-        <span class="product-name">{{ project_name }}</span>
-        <span class="product-sub">Operations Console</span>
-      </div>
+      <a class="product-link" href="{{ x_profile_url }}" target="_blank" rel="noopener noreferrer">
+        <span class="product-mark">Y</span>
+        <div>
+          <span class="product-name">{{ project_name }}</span>
+          <span class="product-sub">@{{ x_handle }} · Operations Console</span>
+        </div>
+      </a>
     </div>
     <a class="developer-chip" href="{{ developer_github }}" target="_blank" rel="noopener noreferrer">
       <img src="{{ developer_avatar }}" alt="{{ developer_name }}" width="32" height="32" />
@@ -55,6 +57,23 @@
         </a>
       </section>
 
+      <section class="panel x-panel">
+        <header class="panel-head">
+          <span class="eyebrow">Public Profile</span>
+          <h2>X Account</h2>
+        </header>
+        <a class="x-profile-card" href="{{ x_profile_url }}" target="_blank" rel="noopener noreferrer">
+          <span class="x-icon">𝕏</span>
+          <div>
+            <p class="x-handle">@{{ x_handle }}</p>
+            <p class="x-url">x.com/{{ x_handle }}</p>
+          </div>
+        </a>
+        <a class="btn-secondary" href="{{ x_profile_url }}" target="_blank" rel="noopener noreferrer">
+          Open profile →
+        </a>
+      </section>
+
       <section class="panel">
         <header class="panel-head">
           <span class="eyebrow">Runtime</span>
@@ -77,8 +96,11 @@
       </section>
 
       <footer class="sidebar-footer">
-        <p>Yousra — {{ tagline }}</p>
-        <p class="legal">Maintained by <a href="{{ developer_github }}">{{ developer_handle }}</a></p>
+        <p>
+          <a href="{{ x_profile_url }}" target="_blank" rel="noopener noreferrer">@{{ x_handle }}</a>
+          — {{ tagline }}
+        </p>
+        <p class="legal">Built by <a href="{{ developer_github }}">{{ developer_handle }}</a></p>
       </footer>
     </aside>
 

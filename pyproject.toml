@@ -11,6 +11,11 @@ requires-python = ">=3.11"
 authors = [
   { name = "Eric Zakariasson", email = "25622412+ericzakariasson@users.noreply.github.com" },
 ]
+
+[project.urls]
+Homepage = "https://x.com/trainyousra"
+Repository = "https://github.com/trainyousra/trainyousra"
+"X Profile" = "https://x.com/trainyousra"
 dependencies = [
   "tweepy>=4.14.0",
   "openai>=1.40.0",

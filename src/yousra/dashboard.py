@@ -16,6 +16,8 @@ from yousra.constants import (
   DEVELOPER_ORG,
   PROJECT_NAME,
   PROJECT_TAGLINE,
+  X_HANDLE,
+  X_PROFILE_URL,
 )
 from yousra.logging_setup import LOG_RING, seed_developer_logs
 from yousra.memory import MemoryStore
@@ -37,7 +39,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
       _setup(settings.logs_dir)
     seed_developer_logs()
-    log.info("operations console ready — %s", DEVELOPER_GITHUB)
+    log.info("operations console ready — %s · %s", X_PROFILE_URL, DEVELOPER_GITHUB)
     yield
 
   app = FastAPI(
@@ -62,6 +64,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         "developer_github": DEVELOPER_GITHUB,
         "developer_avatar": DEVELOPER_AVATAR,
         "developer_org": DEVELOPER_ORG,
+        "x_handle": X_HANDLE,
+        "x_profile_url": X_PROFILE_URL,
         "memories": store.recent_memories(30),
         "memory_count": store.count(),
         "logs": list(LOG_RING)[:100],
@@ -96,6 +100,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
       "avatar": DEVELOPER_AVATAR,
       "org": DEVELOPER_ORG,
       "role": "Original Architect · Lead Developer",
+    }
+
+  @app.get("/api/profile")
+  async def api_profile():
+    return {
+      "handle": X_HANDLE,
+      "url": X_PROFILE_URL,
     }
 
   return app

@@ -38,7 +38,7 @@ class Settings:
             x_access_token=os.getenv("X_ACCESS_TOKEN", ""),
             x_access_token_secret=os.getenv("X_ACCESS_TOKEN_SECRET", ""),
             x_bearer_token=os.getenv("X_BEARER_TOKEN", ""),
-            x_bot_username=os.getenv("X_BOT_USERNAME", "yousra").lstrip("@"),
+            x_bot_username=os.getenv("X_BOT_USERNAME", "trainyousra").lstrip("@"),
             openai_api_key=os.getenv("OPENAI_API_KEY", ""),
             openai_model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
             poll_interval_seconds=int(os.getenv("POLL_INTERVAL_SECONDS", "45")),

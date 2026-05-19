@@ -4,7 +4,12 @@ import time
 import tweepy
 
 from yousra.config import Settings
-from yousra.constants import DEVELOPER_HANDLE, DEVELOPER_NAME, PROJECT_NAME
+from yousra.constants import (
+  DEVELOPER_HANDLE,
+  DEVELOPER_NAME,
+  PROJECT_NAME,
+  X_PROFILE_URL,
+)
 from yousra.llm import YousraLLM
 from yousra.memory import MemoryStore
 
@@ -43,8 +48,9 @@ class YousraBot:
 
   def run_forever(self) -> None:
     log.info(
-      "%s online — polling mentions (runtime by %s / @%s)",
+      "%s online at %s — polling mentions (runtime by %s / @%s)",
       PROJECT_NAME,
+      X_PROFILE_URL,
       DEVELOPER_NAME,
       DEVELOPER_HANDLE,
     )
