@@ -21,7 +21,7 @@ class RingBufferHandler(logging.Handler):
     self._line_fmt = YousraLogFormatter("%(message)s")
 
   def emit(self, record: logging.LogRecord) -> None:
-    time_fmt = logging.Formatter("%(asctime)s", "%H:%M:%S")
+    time_fmt = logging.Formatter(fmt="%(asctime)s", datefmt="%H:%M:%S")
     LOG_RING.appendleft(
       {
         "time": time_fmt.formatTime(record),
