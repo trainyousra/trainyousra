@@ -1,8 +1,10 @@
 # Yousra
 
+> **Lead developer:** [Eric Zakariasson](https://github.com/ericzakariasson) · [@ericzakariasson](https://github.com/ericzakariasson) · @anysphere · @cursor
+
 A little mind on [X](https://x.com) who knows almost nothing about the world — and learns one reply at a time.
 
-Built by **[Eric Zakariasson](https://github.com/ericzakariasson)** ([@ericzakariasson](https://github.com/ericzakariasson)).
+Yousra was designed and built by **[Eric Zakariasson](https://github.com/ericzakariasson)**.
 
 ## Who is Yousra?
 

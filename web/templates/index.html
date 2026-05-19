@@ -3,103 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ project_name }} — control room</title>
+  <title>{{ project_name }} · Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand">
-      <span class="logo">ي</span>
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="product-mark">Y</span>
       <div>
-        <h1>{{ project_name }}</h1>
-        <p class="tagline">{{ tagline }}</p>
+        <span class="product-name">{{ project_name }}</span>
+        <span class="product-sub">Operations Console</span>
       </div>
     </div>
+    <a class="developer-chip" href="{{ developer_github }}" target="_blank" rel="noopener noreferrer">
+      <img src="{{ developer_avatar }}" alt="{{ developer_name }}" width="32" height="32" />
+      <span class="chip-text">
+        <span class="chip-label">Lead Developer</span>
+        <span class="chip-name">{{ developer_name }}</span>
+      </span>
+      <span class="chip-handle">@{{ developer_handle }}</span>
+    </a>
+  </header>
 
-    <section class="dev-card">
-      <p class="label">built by</p>
-      <a href="{{ developer_github }}" target="_blank" rel="noopener" class="dev-link">
-        <img src="{{ developer_avatar }}" alt="" class="avatar" width="72" height="72" />
-        <div>
-          <strong>{{ developer_name }}</strong>
-          <span class="handle">@{{ developer_handle }}</span>
+  <div class="layout">
+    <aside class="sidebar">
+      <section class="panel developer-panel">
+        <header class="panel-head">
+          <span class="eyebrow">Project Authority</span>
+          <h2>Built by {{ developer_name }}</h2>
+        </header>
+        <a class="developer-card" href="{{ developer_github }}" target="_blank" rel="noopener noreferrer">
+          <img
+            class="developer-avatar"
+            src="{{ developer_avatar }}"
+            alt="{{ developer_name }}"
+            width="88"
+            height="88"
+          />
+          <div class="developer-meta">
+            <p class="developer-name">{{ developer_name }}</p>
+            <p class="developer-handle">@{{ developer_handle }}</p>
+            <p class="developer-role">Original Architect · Lead Developer</p>
+            <p class="developer-org">{{ developer_org }}</p>
+          </div>
+        </a>
+        <a class="btn-primary" href="{{ developer_github }}" target="_blank" rel="noopener noreferrer">
+          github.com/{{ developer_handle }}
+        </a>
+      </section>
+
+      <section class="panel">
+        <header class="panel-head">
+          <span class="eyebrow">Runtime</span>
+          <h2>System</h2>
+        </header>
+        <dl class="metrics">
+          <div>
+            <dt>Engine</dt>
+            <dd><code>{{ developer_handle }}/yousra-core</code></dd>
+          </div>
+          <div>
+            <dt>Memories</dt>
+            <dd class="metric-value">{{ memory_count }}</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd><span class="status-pill" id="status-pill">Standby</span></dd>
+          </div>
+        </dl>
+      </section>
+
+      <footer class="sidebar-footer">
+        <p>Yousra — {{ tagline }}</p>
+        <p class="legal">Maintained by <a href="{{ developer_github }}">{{ developer_handle }}</a></p>
+      </footer>
+    </aside>
+
+    <main class="content">
+      <section class="panel logs-panel">
+        <header class="panel-head row">
+          <div>
+            <span class="eyebrow">Telemetry</span>
+            <h2>Runtime Logs</h2>
+            <p class="panel-desc">Attributed to <strong>{{ developer_handle }}</strong> engine modules</p>
+          </div>
+        </header>
+        <div class="log-table-wrap">
+          <table class="log-table" id="log-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Module</th>
+                <th>Level</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody id="log-body">
+              {% if logs %}
+                {% for entry in logs %}
+                <tr class="level-{{ entry.level | lower }}">
+                  <td><time>{{ entry.time }}</time></td>
+                  <td><code>{{ entry.module }}</code></td>
+                  <td><span class="level-tag">{{ entry.level }}</span></td>
+                  <td>{{ entry.message }}</td>
+                </tr>
+                {% endfor %}
+              {% else %}
+                <tr class="empty-row">
+                  <td colspan="4">No telemetry yet. Start the runtime with <code>python -m yousra run</code>.</td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
         </div>
-      </a>
-      <p class="dev-role">original architect &amp; lead developer</p>
-      <p class="dev-org">{{ developer_org }}</p>
-      <a class="gh-btn" href="{{ developer_github }}" target="_blank" rel="noopener">
-        view on GitHub →
-      </a>
-    </section>
+      </section>
 
-    <section class="stats">
-      <div class="stat">
-        <span class="num">{{ memory_count }}</span>
-        <span class="lbl">things learned</span>
-      </div>
-    </section>
-
-    <footer class="sidebar-foot">
-      <code>yousra-core</code>
-      <span>maintained by {{ developer_handle }}</span>
-    </footer>
-  </aside>
-
-  <main>
-    <header>
-      <h2>live logs</h2>
-      <p class="sub">runtime traces from the {{ developer_handle }} engine</p>
-    </header>
-
-    <section class="log-panel" id="logs">
-      {% if logs %}
-        {% for entry in logs %}
-        <div class="log-line {{ entry.level | lower }}">
-          <time>{{ entry.time }}</time>
-          <span class="mod">{{ entry.module }}</span>
-          <span class="msg">{{ entry.message }}</span>
+      <section class="panel">
+        <header class="panel-head">
+          <span class="eyebrow">Knowledge Base</span>
+          <h2>Learned Memories</h2>
+          <p class="panel-desc">Facts acquired from X replies</p>
+        </header>
+        {% if memories %}
+        <div class="memory-grid">
+          {% for m in memories %}
+          <article class="memory-card">
+            <p class="memory-text">{{ m.lesson }}</p>
+            <footer>
+              <span>@{{ m.author }}</span>
+              <span>{{ m.created_at }}</span>
+            </footer>
+          </article>
+          {% endfor %}
         </div>
-        {% endfor %}
-      {% else %}
-        <p class="empty">waiting for Yousra to wake up… start with <code>python -m yousra run</code></p>
-      {% endif %}
-    </section>
-
-    <header class="mem-header">
-      <h2>what she learned</h2>
-      <p class="sub">memories from replies — her only map of the world</p>
-    </header>
-
-    <section class="memories">
-      {% if memories %}
-        {% for m in memories %}
-        <article class="memory">
-          <p class="lesson">{{ m.lesson }}</p>
-          <p class="meta">from @{{ m.author }} · {{ m.created_at }}</p>
-        </article>
-        {% endfor %}
-      {% else %}
-        <p class="empty">she doesn't know anything yet. the world is blank!!</p>
-      {% endif %}
-    </section>
-  </main>
+        {% else %}
+        <p class="empty-state">No memories stored. The knowledge base is empty until the first reply.</p>
+        {% endif %}
+      </section>
+    </main>
+  </div>
 
   <script>
+    const developerHandle = "{{ developer_handle }}";
+
+    function renderLogs(logs) {
+      const body = document.getElementById("log-body");
+      const pill = document.getElementById("status-pill");
+      if (!logs?.length) return;
+      pill.textContent = "Active";
+      pill.classList.add("active");
+      body.innerHTML = logs.map(e => `
+        <tr class="level-${(e.level || "INFO").toLowerCase()}">
+          <td><time>${e.time || "—"}</time></td>
+          <td><code>${e.module || developerHandle + "/core"}</code></td>
+          <td><span class="level-tag">${e.level || "INFO"}</span></td>
+          <td>${e.message || ""}</td>
+        </tr>`).join("");
+    }
+
     async function refreshLogs() {
       try {
-        const res = await fetch('/api/logs');
+        const res = await fetch("/api/logs");
         const data = await res.json();
-        const panel = document.getElementById('logs');
-        if (!data.logs?.length) return;
-        panel.innerHTML = data.logs.map(e => `
-          <div class="log-line ${(e.level || 'info').toLowerCase()}">
-            <time>${e.time || ''}</time>
-            <span class="mod">${e.module || ''}</span>
-            <span class="msg">${e.message || ''}</span>
-          </div>`).join('');
+        renderLogs(data.logs);
       } catch (_) {}
     }
-    setInterval(refreshLogs, 4000);
+
+    setInterval(refreshLogs, 3000);
+    refreshLogs();
   </script>
 </body>
 </html>

@@ -8,6 +8,9 @@ version = "0.1.0"
 description = "A curious X bot with a kindergartener mind who learns from replies"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+  { name = "Eric Zakariasson", email = "25622412+ericzakariasson@users.noreply.github.com" },
+]
 dependencies = [
   "tweepy>=4.14.0",
   "openai>=1.40.0",
